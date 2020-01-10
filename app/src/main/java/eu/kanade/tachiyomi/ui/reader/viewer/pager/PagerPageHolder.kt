@@ -27,15 +27,11 @@ import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.github.chrisbanes.photoview.PhotoView
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerConfig.ZoomType
-import eu.kanade.tachiyomi.util.ImageUtil
-import eu.kanade.tachiyomi.util.dpToPx
-import eu.kanade.tachiyomi.util.gone
-import eu.kanade.tachiyomi.util.visible
+import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.ViewPagerAdapter
 import rx.Observable
 import rx.Subscription
@@ -435,7 +431,7 @@ class PagerPageHolder(
      * Extension method to set a [stream] into this ImageView.
      */
     private fun ImageView.setImage(stream: InputStream) {
-        GlideApp.with(this)
+        GlideAppCompat.with(this)
             .load(stream)
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)

@@ -5,10 +5,10 @@ import android.graphics.Bitmap
 import android.support.v4.app.NotificationCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.notification.NotificationHandler
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
+import eu.kanade.tachiyomi.util.GlideAppCompat
 import eu.kanade.tachiyomi.util.notificationManager
 import java.io.File
 
@@ -35,7 +35,7 @@ class SaveImageNotifier(private val context: Context) {
      * @param file image file containing downloaded page image.
      */
     fun onComplete(file: File) {
-        val bitmap = GlideApp.with(context)
+        val bitmap = GlideAppCompat.with(context)
             .asBitmap()
             .load(file)
             .diskCacheStrategy(DiskCacheStrategy.NONE)

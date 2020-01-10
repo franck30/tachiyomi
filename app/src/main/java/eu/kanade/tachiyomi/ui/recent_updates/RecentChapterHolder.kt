@@ -5,8 +5,8 @@ import android.widget.PopupMenu
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.kanade.tachiyomi.util.GlideAppCompat
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.setVectorCompat
 import kotlinx.android.synthetic.main.recent_chapters_item.*
@@ -67,9 +67,9 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
         chapter_menu_icon.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
 
         // Set cover
-        GlideApp.with(itemView.context).clear(manga_cover)
+        GlideAppCompat.with(itemView.context).clear(manga_cover)
         if (!item.manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(itemView.context)
+            GlideAppCompat.with(itemView.context)
                     .load(item.manga)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .circleCrop()

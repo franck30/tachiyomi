@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.ui.library
 import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.LocalSource
+import eu.kanade.tachiyomi.util.GlideAppCompat
 import kotlinx.android.synthetic.main.catalogue_grid_item.*
 
 /**
@@ -46,8 +46,8 @@ class LibraryGridHolder(
         local_text.visibility = if(item.manga.source == LocalSource.ID) View.VISIBLE else View.GONE
 
         // Update the cover.
-        GlideApp.with(view.context).clear(thumbnail)
-        GlideApp.with(view.context)
+        GlideAppCompat.with(view.context).clear(thumbnail)
+        GlideAppCompat.with(view.context)
                 .load(item.manga)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()

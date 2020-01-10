@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.ui.catalogue.global_search
 import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.kanade.tachiyomi.util.GlideAppCompat
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
 import kotlinx.android.synthetic.main.catalogue_global_search_controller_card_item.*
 
@@ -37,9 +37,9 @@ class CatalogueSearchCardHolder(view: View, adapter: CatalogueSearchCardAdapter)
     }
 
     fun setImage(manga: Manga) {
-        GlideApp.with(itemView.context).clear(itemImage)
+        GlideAppCompat.with(itemView.context).clear(itemImage)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(itemView.context)
+            GlideAppCompat.with(itemView.context)
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .centerCrop()

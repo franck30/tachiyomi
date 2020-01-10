@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import eu.kanade.tachiyomi.util.GlideAppCompat
 import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.track_search_item.view.*
@@ -45,9 +45,9 @@ class TrackSearchAdapter(context: Context)
         fun onSetValues(track: TrackSearch) {
             view.track_search_title.text = track.title
             view.track_search_summary.text = track.summary
-            GlideApp.with(view.context).clear(view.track_search_cover)
+            GlideAppCompat.with(view.context).clear(view.track_search_cover)
             if (!track.cover_url.isNullOrEmpty()) {
-                GlideApp.with(view.context)
+                GlideAppCompat.with(view.context)
                         .load(track.cover_url)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .centerCrop()

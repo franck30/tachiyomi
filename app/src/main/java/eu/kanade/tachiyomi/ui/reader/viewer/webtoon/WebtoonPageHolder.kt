@@ -25,14 +25,10 @@ import com.bumptech.glide.request.transition.NoTransition
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
-import eu.kanade.tachiyomi.util.ImageUtil
-import eu.kanade.tachiyomi.util.dpToPx
-import eu.kanade.tachiyomi.util.gone
-import eu.kanade.tachiyomi.util.visible
+import eu.kanade.tachiyomi.util.*
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -133,7 +129,7 @@ class WebtoonPageHolder(
         removeDecodeErrorLayout()
         subsamplingImageView?.recycle()
         subsamplingImageView?.gone()
-        imageView?.let { GlideApp.with(frame).clear(it) }
+        imageView?.let { GlideAppCompat.with(frame).clear(it) }
         imageView?.gone()
         progressBar.setProgress(0)
     }
@@ -475,7 +471,7 @@ class WebtoonPageHolder(
      * Extension method to set a [stream] into this ImageView.
      */
     private fun ImageView.setImage(stream: InputStream) {
-        GlideApp.with(this)
+        GlideAppCompat.with(this)
             .load(stream)
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)

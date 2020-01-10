@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.ui.library
 import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.LocalSource
+import eu.kanade.tachiyomi.util.GlideAppCompat
 import kotlinx.android.synthetic.main.catalogue_list_item.*
 
 /**
@@ -52,8 +52,8 @@ class LibraryListHolder(
         }
 
         // Update the cover.
-        GlideApp.with(itemView.context).clear(thumbnail)
-        GlideApp.with(itemView.context)
+        GlideAppCompat.with(itemView.context).clear(thumbnail)
+        GlideAppCompat.with(itemView.context)
                 .load(item.manga)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()

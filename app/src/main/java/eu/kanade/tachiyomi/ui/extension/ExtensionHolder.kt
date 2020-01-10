@@ -2,11 +2,11 @@ package eu.kanade.tachiyomi.ui.extension
 
 import android.view.View
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
+import eu.kanade.tachiyomi.util.GlideAppCompat
 import eu.kanade.tachiyomi.util.LocaleHelper
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.extension_card_item.*
@@ -41,9 +41,9 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
             itemView.context.getString(R.string.ext_untrusted).toUpperCase()
         }
 
-        GlideApp.with(itemView.context).clear(image)
+        GlideAppCompat.with(itemView.context).clear(image)
         if (extension is Extension.Available) {
-            GlideApp.with(itemView.context)
+            GlideAppCompat.with(itemView.context)
                     .load(extension.iconUrl)
                     .into(image)
         } else {

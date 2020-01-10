@@ -28,7 +28,6 @@ import com.jakewharton.rxbinding.view.longClicks
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
@@ -41,11 +40,7 @@ import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import eu.kanade.tachiyomi.util.getResourceColor
-import eu.kanade.tachiyomi.util.openInBrowser
-import eu.kanade.tachiyomi.util.snack
-import eu.kanade.tachiyomi.util.toast
-import eu.kanade.tachiyomi.util.truncateCenter
+import eu.kanade.tachiyomi.util.*
 import jp.wasabeef.glide.transformations.CropSquareTransformation
 import jp.wasabeef.glide.transformations.MaskTransformation
 import kotlinx.android.synthetic.main.manga_info_controller.*
@@ -226,14 +221,14 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         // Set cover if it wasn't already.
         if (manga_cover.drawable == null && !manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(view.context)
+            GlideAppCompat.with(view.context)
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .centerCrop()
                     .into(manga_cover)
 
             if (backdrop != null) {
-                GlideApp.with(view.context)
+                GlideAppCompat.with(view.context)
                         .load(manga)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .centerCrop()
@@ -479,7 +474,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      */
     private fun createShortcutForShape(i: Int = 0) {
         if (activity == null) return
-        GlideApp.with(activity!!)
+        GlideAppCompat.with(activity!!)
                 .asBitmap()
                 .load(presenter.manga)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)

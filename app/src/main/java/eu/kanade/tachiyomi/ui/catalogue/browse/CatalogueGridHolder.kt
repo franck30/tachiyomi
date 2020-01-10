@@ -4,7 +4,7 @@ import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.util.GlideAppCompat
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
 import kotlinx.android.synthetic.main.catalogue_grid_item.*
 
@@ -36,9 +36,9 @@ class CatalogueGridHolder(private val view: View, private val adapter: FlexibleA
     }
 
     override fun setImage(manga: Manga) {
-        GlideApp.with(view.context).clear(thumbnail)
+        GlideAppCompat.with(view.context).clear(thumbnail)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(view.context)
+            GlideAppCompat.with(view.context)
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .centerCrop()

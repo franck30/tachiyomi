@@ -1,7 +1,9 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
+import com.google.gson.annotations.SerializedName
+
 data class Collection(
-  val `private`: Int? = 0,
+  @SerializedName("private") val isprivate: Int? = 0,
   val comment: String? = "",
   val ep_status: Int? = 0,
   val lasttouch: Int? = 0,
